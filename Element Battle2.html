@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        button{
+            border: 0;
+            line-height: 2.5;
+            padding: 0 20px;
+            font-size: 1rem;
+            text-align: center;
+            color: #fff;
+            text-shadow: 1px 1px 1px #000;
+            border-radius: 10px;
+            box-shadow:
+                inset 2px 2px 3px rgba(255, 255, 255, 0.6),
+                inset -2px -2px 3px rgba(0, 0, 0, 0.6);
+            
+        }
+        button:hover{
+            transform: scale(1.08);
+        }
+        button:active{
+            box-shadow:
+            inset -2px -2px 3px rgba(255, 255, 255, 0.6),
+            inset 2px 2px 3px rgba(0, 0, 0, 0.6);
+        }
+        .fire{
+            background-color: rgb(228, 10, 10);
+            
+        }
+        .water{
+            background-color: rgb(19, 19, 214);
+        }
+        .electric{
+            background-color:rgb(10, 241, 241);
+        }
+        .grass{
+            background-color: rgb(13, 228, 13);
+        }
+        .file_attack{
+            background-color: darkred;
+        }
+        .water_pump{
+            background-color: darkblue;
+        }
+        .electric_shock{
+            background-color: darkturquoise;
+        }
+        .leaf_attack{
+            background-color: darkgreen;
+        }
+        #last{
+            background-color: rgba(0, 0, 0, 0.945);
+        }
+    </style>
+    <style>
+
+    </style>
+</head>
+<body>
+<div id="restart">
+    <h1>게임을 다시 시작하시겠습니까?</h1>
+    <button onclick="start()" id="last">예</button>
+    <button onclick="stop()" id="last">아니오</button>
+</div>
+<div id="속성 선택">
+	<button onclick="select(this.value)" value="불속성" class="fire">불속성</button>
+    <button onclick="select(this.value)" value="물속성" class= "water">물속성</button>
+    <button onclick="select(this.value)" value="전기속성" class="electric" >전기속성</button>
+    <button onclick="select(this.value)" value="풀속성" class = "grass">풀속성</button>
+</div>
+<div id="불속성">
+	<button onclick="atk(this.value)" value="불1" class="file_attack">File ball(30)</button>
+    <button onclick="atk(this.value)" value="불2" class ="water_pump">Water pump(20)</button>
+    <button onclick="atk(this.value)" value="불3" class ="electric_shock">electric shock(15)</button>
+    <button onclick="atk(this.value)" value="불4" class ="leaf_attack">Leaf attack(10)</button>
+</div>
+<div id="물속성">
+	<button onclick="atk(this.value)" value="물1" class="file_attack">File ball(10)</button>
+    <button onclick="atk(this.value)" value="물2" class ="water_pump">Water pump(30)</button>
+    <button onclick="atk(this.value)" value="물3" class ="electric_shock">electric shock(15)</button>
+    <button onclick="atk(this.value)" value="물4" class ="leaf_attack">Leaf attack(20)</button>
+</div>
+<div id="풀속성">
+	<button onclick="atk(this.value)" value="풀1" class="file_attack">File ball(15)</button>
+    <button onclick="atk(this.value)" value="풀2" class ="water_pump">Water pump(20)</button>
+    <button onclick="atk(this.value)" value="풀3" class ="electric_shock">electric shock(10)</button>
+    <button onclick="atk(this.value)" value="풀4" class ="leaf_attack">Leaf attack(30)</button>
+</div>
+<div id="전기속성">
+	<button onclick="atk(this.value)" value="전기1" class="file_attack">File ball(10)</button>
+    <button onclick="atk(this.value)" value="전기2" class ="water_pump">Water pump(15)</button>
+    <button onclick="atk(this.value)" value="전기3" class ="electric_shock">electric shock(30)</button>
+    <button onclick="atk(this.value)" value="전기4" class ="leaf_attack">Leaf attack(20)</button>
+</div>
+<script>
+    let attacking; 
+    let my_element; 
+    let enemy_hp =80; 
+    const element = ["불","풀","물","전기"]; 
+    let enemy_element = element[Math.floor(Math.random()*element.length)]; 
+    document.getElementById("restart").style.display ="none"
+    document.getElementById("속성 선택").style.display = "none"; 
+    document.getElementById("불속성").style.display = "none"; 
+    document.getElementById("물속성").style.display = "none"; 
+    document.getElementById("풀속성").style.display = "none"; 
+    document.getElementById("전기속성").style.display = "none"; 
+    alert("Element Battle2!"); 
+    document.getElementById("속성 선택").style.display = "block"; 
+    function interface(value){
+	this.value=value; 
+    document.getElementById("속성 선택").style.display = "none"; 
+    document.getElementById(value).style.display ="block"; 
+    my_element = value;}
+    function select(value){
+	return interface(value);
+    }
+    function atk1(value){
+	//--------------------불속성 공격 ----------------------------------------- 
+	if(my_element =="불속성" && value =="불1"){	
+        if(enemy_element == '풀'){
+			alert("효과가 굉장했다! 60의 데미지를 입혔다."); enemy_hp -= 60;
+		}else if(enemy_element == "전기"){
+			alert("효과가 미미했다..15의 데미지를 입혔다."); enemy_hp -= 15;
+		}else {
+			alert("30의 데미지를 입혔다."); enemy_hp -= 30;
+		}
+	}else if(my_element =="풀속성" && value == '풀1'){
+		if(enemy_element == '풀'){
+			alert("효과가 굉장했다! 20의 데미지를 입혔다."); enemy_hp -= 20;
+		}else if(enemy_element == "전기"){
+			alert("효과가 미미했다..5의 데미지를 입혔다."); enemy_hp -= 5;
+		}else {
+			alert("10의 데미지를 입혔다."); enemy_hp -= 10;
+		}
+	}else if(my_element =="물속성" && value == '물1'){
+		if(enemy_element == '풀'){
+			alert("효과가 굉장했다! 20의 데미지를 입혔다."); enemy_hp -= 20;
+		}else if(enemy_element == "전기"){
+			alert("효과가 미미했다..5의 데미지를 입혔다."); enemy_hp -= 5;
+		}else {
+			alert("10의 데미지를 입혔다."); enemy_hp -= 10;
+		}
+	}else if(my_element =="전기속성" && value == '전기1'){
+		if(enemy_element == '풀'){
+			alert("효과가 굉장했다! 20의 데미지를 입혔다."); enemy_hp -= 20;
+		}else if(enemy_element == "전기"){
+			alert("효과가 미미했다.. 5의 데미지를 입혔다."); enemy_hp -= 5;
+		}else {
+			alert("10의 데미지를 입혔다."); enemy_hp -= 10;
+		}
+	}////----------------------------풀속성 공격 ------------------------------ 
+	else if (my_element =="풀속성" && value == "풀4"){	
+        if(enemy_element == '물'){
+			alert("효과가 굉장했다! 60의 데미지를 입혔다."); enemy_hp -= 60;
+		}else if(enemy_element == "불"){
+			alert("효과가 미미했다..15의 데미지를 입혔다."); enemy_hp -= 15;
+		}else {
+			alert("30의 데미지를 입혔다."); enemy_hp -= 30;
+		}
+	}else if (my_element =="전기속성" && value == "전기4"){
+		if(enemy_element == '물'){
+			alert("효과가 굉장했다! 40의 데미지를 입혔다."); enemy_hp -= 40;
+		}else if(enemy_element == "불"){
+			alert("효과가 미미했다..10의 데미지를 입혔다."); enemy_hp -= 10;
+		}else {
+			alert("20의 데미지를 입혔다."); enemy_hp -= 20;
+		}
+	}else if (my_element =="물속성" && value == "물4"){
+		if(enemy_element == '물'){
+			alert("효과가 굉장했다! 30의 데미지를 입혔다."); enemy_hp -= 30;
+		}else if(enemy_element == "불"){
+			alert("효과가 미미했다..7.5의 데미지를 입혔다."); enemy_hp -= 7.5;
+		}else {
+			alert("15의 데미지를 입혔다."); enemy_hp -= 15;
+		}
+	}else if (my_element =="불속성" && value == "불4"){
+		if(enemy_element == '물'){
+			alert("효과가 굉장했다! 20의 데미지를 입혔다."); enemy_hp -= 20;
+		}else if(enemy_element == "불"){
+			alert("효과가 미미했다.. 5의 데미지를 입혔다."); enemy_hp -= 5;
+		}else {
+			alert("10의 데미지를 입혔다."); enemy_hp -= 10;
+		}
+	}//----------------------------물속성 공격 ------------------------------ 
+	else if (my_element =="물속성" && value == "물2"){	
+        if(enemy_element == '전기'){
+			alert("효과가 굉장했다! 60의 데미지를 입혔다."); enemy_hp -= 60;
+		}else if(enemy_element == "풀"){
+			alert("효과가 미미했다.. 15의 데미지를 입혔다."); enemy_hp -= 15;
+		}else {
+			alert("30의 데미지를 입혔다."); enemy_hp -= 30;
+		}
+	}else if (my_element =="불속성" && value == "불2"){
+		if(enemy_element == '전기'){
+			alert("효과가 굉장했다! 30의 데미지를 입혔다."); enemy_hp -= 30;
+		}else if(enemy_element == "풀"){
+			alert("효과가 미미했다.. 7.5의 데미지를 입혔다."); enemy_hp -= 7.5;
+		}else {
+			alert("15의 데미지를 입혔다."); enemy_hp -= 15;
+		}
+	}else if (my_element =="전기속성" && value == "전기2"){
+		if(enemy_element == '전기'){
+			alert("효과가 굉장했다! 30의 데미지를 입혔다."); enemy_hp -= 30;
+		}else if(enemy_element == "풀"){
+			alert("효과가 미미했다.. 7.5의 데미지를 입혔다."); enemy_hp -= 7.5;
+		}else {
+			alert("15의 데미지를 입혔다."); enemy_hp -= 15;
+		}
+	}else if (my_element =="풀속성" && value == "풀2"){
+		if(enemy_element == '전기'){
+			alert("효과가 굉장했다! 40의 데미지를 입혔다."); enemy_hp -= 40;
+		}else if(enemy_element == "풀"){
+			alert("효과가 미미했다.. 10의 데미지를 입혔다."); enemy_hp -= 10;
+		}else {
+			alert("20의 데미지를 입혔다."); enemy_hp -= 20;
+		}
+	}//----------------------------전기속성 공격 ------------------------------ 
+	else if (my_element =="전기속성" && value == "전기3"){	
+        if(enemy_element == '불'){
+			alert("효과가 굉장했다! 60의 데미지를 입혔다."); enemy_hp -= 60;
+		}else if(enemy_element == "물"){
+			alert("효과가 미미했다.. 15의 데미지를 입혔다."); enemy_hp -= 15;
+		}else {
+			alert("30의 데미지를 입혔다."); enemy_hp -= 30;
+		}
+	}else if (my_element =="불속성" && value == "불3"){
+		if(enemy_element == '불'){
+			alert("효과가 굉장했다! 20의 데미지를 입혔다."); enemy_hp -= 20;
+		}else if(enemy_element == "물"){
+			alert("효과가 미미했다.. 5의 데미지를 입혔다."); enemy_hp -= 5;
+		}else {
+			alert("10의 데미지를 입혔다."); enemy_hp -= 10;
+		}
+	}else if (my_element =="물속성" && value == "물3"){
+		if(enemy_element == '불'){
+			alert("효과가 굉장했다! 30의 데미지를 입혔다."); enemy_hp -= 30;
+		}else if(enemy_element == "물"){
+			alert("효과가 미미했다.. 7.5의 데미지를 입혔다."); enemy_hp -= 7.5;
+		}else {
+			alert("15의 데미지를 입혔다."); enemy_hp -= 15;
+		}
+	}else if (my_element =="풀속성" && value == "풀3"){
+		if(enemy_element == '불'){
+			alert("효과가 굉장했다! 20의 데미지를 입혔다."); enemy_hp -= 20;
+		}else if(enemy_element == "물"){
+			alert("효과가 미미했다.. 5의 데미지를 입혔다."); enemy_hp -= 5;
+		}else {
+			alert("10의 데미지를 입혔다."); enemy_hp -= 10;
+		}
+	}
+}
+    let turn = 1;
+
+    function atk(value){
+
+        atk1(value);
+
+        alert(`남은 상대 HP ${enemy_hp}`);
+
+        if(enemy_hp <= 0){
+            result();
+        }
+
+        turn++;
+
+        if(turn <= 3){
+            alert(`${turn}번째 턴 공격 선택`);
+        }else{
+            result();
+        }
+    }
+    function result(){
+        if(enemy_hp<=0){
+            alert("게임 승리! 적을 쓰러뜨렸습니다");
+        }
+        else if(enemy_hp>0){
+            alert("패배! 적을 쓰러뜨리지 못하였습니다");
+        }
+    document.getElementById(value).style.display ="none"; 
+    document.getElementById("restart").style.display="block";    
+    }
+    function start(){
+        location.reload()
+    }
+    function stop(){
+        document.body.innerHTML = "<h1>게임 끝</h1>"
+        document.getElementById("restart").style.display="none";
+    }
+</script>
+</body>
+</html>
