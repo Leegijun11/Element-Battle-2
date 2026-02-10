@@ -105,7 +105,7 @@
 
 ---
 
-## 🛠 사용 기술
+## 사용 기술
 
 - HTML  
 - CSS  
@@ -123,7 +123,7 @@
 
 ---
 
-## 개선된 부분 (Element Battle 1 대비)
+## 개선된 부분 (Element Battle 대비)
 
 ### 기존
 - Alert 기반 UI  
