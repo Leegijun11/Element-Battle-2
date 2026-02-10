@@ -1,5 +1,7 @@
 # 🎮 Element Battle 2
 
+![Main Screen](images/Element select.jpg)
+
 속성 상성 시스템을 기반으로 한 턴제 전투 미니 게임입니다.  
 기존 Element Battle 프로젝트에서 UI 디자인과 사용자 경험을 개선한 버전입니다.
 
